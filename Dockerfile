@@ -12,7 +12,7 @@ RUN apk add --no-cache --virtual .cache-deps libmemcached-dev zlib-dev libmcrypt
  && apk del .cache-deps \
  && rm -rf /tmp/pear
 
-# Install mcrypt
-RUN apk add --no-cache --virtual .mcrypt-deps libmcrypt-dev ${PHPIZE_DEPS} \
- &&  docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mcrypt \
- && apk del .mcrypt-deps
+# # Install mcrypt
+# RUN apk add --no-cache --virtual .mcrypt-deps libmcrypt-dev ${PHPIZE_DEPS} \
+#  &&  docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mcrypt \
+#  && apk del .mcrypt-deps
