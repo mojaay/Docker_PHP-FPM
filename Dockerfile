@@ -17,5 +17,3 @@ RUN apk add --no-cache libmcrypt \
  && apk add --no-cache --virtual .mcrypt-deps libmcrypt-dev ${PHPIZE_DEPS} \
  && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mcrypt \
  && apk del .mcrypt-deps
-
-WORKDIR /var/www
