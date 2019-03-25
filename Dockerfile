@@ -12,6 +12,11 @@ RUN apk add --no-cache --virtual .cache-deps libmemcached-dev zlib-dev ${PHPIZE_
  && apk del .cache-deps \
  && rm -rf /tmp/pear
 
+# Install gd
+RUN apk add --no-cache libpng-dev \
+ && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" gd \
+ && docker-php-ext-enable gd
+
 # Install mcrypt
 RUN apk add --no-cache libmcrypt-dev \
  && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mcrypt
