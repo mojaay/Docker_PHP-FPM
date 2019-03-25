@@ -6,7 +6,7 @@ RUN docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" pdo_mysql
 # Install redis
 RUN pecl install redis &&  docker-php-ext-enable redis;
 
-# Install mcrypt
-RUN apt-get update && apt-get install -y libmcrypt-dev \
- && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mcrypt \
- && docker-php-ext-enable mcrypt && apt-get clean
+# Install mcrypt gd
+RUN apt-get update && apt-get install -y libmcrypt-dev libpng-dev\
+ && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mcrypt gd\
+ && docker-php-ext-enable mcrypt gd && apt-get clean
