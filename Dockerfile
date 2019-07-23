@@ -1,7 +1,7 @@
 FROM php:7.1-fpm-alpine
 
 # For CHINA
-# RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 RUN \
 ## add deps
@@ -16,11 +16,11 @@ RUN \
  && pecl install redis && rm -rf /tmp/pear \
  && apk del .cache-deps \
  && docker-php-ext-enable redis \
-# Install mcrypt
- && apk add --no-cache libmcrypt \
- && apk add --no-cache --virtual .mcrypt-deps libmcrypt-dev \
- && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mcrypt \
- && apk del .mcrypt-deps \
+# # Install mcrypt
+#  && apk add --no-cache libmcrypt \
+#  && apk add --no-cache --virtual .mcrypt-deps libmcrypt-dev \
+#  && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mcrypt \
+#  && apk del .mcrypt-deps \
 # Install gd
  && apk add --no-cache freetype libpng libjpeg-turbo \
  && apk add --no-cache --virtual .gd-deps freetype-dev libpng-dev libjpeg-turbo-dev \
