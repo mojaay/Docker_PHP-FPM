@@ -32,6 +32,7 @@ apk add --no-cache --virtual .deps ${PHPIZE_DEPS} \
 && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" gd \
 && apk del .gd-deps \
 # Install zip
+&& apk add --no-cache libzip \
 && apk add --no-cache --virtual .zip-deps libzip-dev \
 && docker-php-ext-configure zip  \
     --with-libzip=/usr/include \
