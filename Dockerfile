@@ -1,7 +1,10 @@
-FROM php:7.1-fpm-alpine
+FROM php:7.4.33-fpm-alpine
 
 # For CHINA
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+# RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
+# Upgrade for fix vulnerabilities
+RUN apk upgrade --no-cache
 
 # Install mysqli pod_mysql
 RUN docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" mysqli pdo_mysql
